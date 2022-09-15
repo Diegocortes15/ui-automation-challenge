@@ -4,8 +4,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.components.NavigationBar;
 
 public class LoginPage extends BasePage {
+
+    NavigationBar navigationBar;
 
     @FindBy(id = "username")
     private WebElement usernameInput;
@@ -25,14 +28,9 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".error_status  .content ul li:nth-child(2)")
     private WebElement errorTextTwo;
 
-    @FindBy(css = ".search[href='/search']")
-    private WebElement searchButton;
-
-    @FindBy(id = "search_v4")
-    private WebElement searchBar;
-
     public LoginPage(WebDriver driver) {
         super(driver);
+        this.navigationBar = new NavigationBar(driver);
     }
 
     public String getErrorTitle() {
@@ -55,9 +53,9 @@ public class LoginPage extends BasePage {
     }
 
     public SearchResultsPage searchMovie(String movie) {
-        searchButton.click();
-        searchBar.sendKeys(movie);
-        searchBar.sendKeys(Keys.ENTER);
+        navigationBar.getSearchButton().click();
+        navigationBar.getSearchBar().sendKeys(movie);
+        navigationBar.getSearchBar().sendKeys(Keys.ENTER);
         return new SearchResultsPage(driver);
     }
 }

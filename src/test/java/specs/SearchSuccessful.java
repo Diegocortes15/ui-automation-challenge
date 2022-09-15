@@ -21,9 +21,9 @@ public class SearchSuccessful extends Hooks {
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.clickLoginButton()
                 .loginUser(AuthConstants.USER_USERNAME, AuthConstants.USER_PASSWORD);
-        SearchResultsPage searchResultsPage = loginPage.searchMovie("Fight Club");
-
         Assert.assertEquals(driver.getTitle(), "My Profile — The Movie Database (TMDB)");
+
+        SearchResultsPage searchResultsPage = loginPage.searchMovie("Fight Club");
         Assert.assertEquals(searchResultsPage.getTitleFirstResult(), "Fight Club");
     }
 }
