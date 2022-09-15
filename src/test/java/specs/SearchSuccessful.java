@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.themoviedb.auth.AuthConstants;
+import data.LoginData;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SearchResultsPage;
@@ -19,11 +19,11 @@ public class SearchSuccessful extends Hooks {
         logger.info("Verify successful search");
 
         HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.clickLoginButton()
-                .loginUser(AuthConstants.USER_USERNAME, AuthConstants.USER_PASSWORD);
+        LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
+        loginPage.loginUser(LoginData.USER_USERNAME, LoginData.USER_PASSWORD);
         Assert.assertEquals(driver.getTitle(), "My Profile — The Movie Database (TMDB)");
 
-        SearchResultsPage searchResultsPage = loginPage.searchMovie("Fight Club");
+        SearchResultsPage searchResultsPage = loginPage.getNavigationBar().searchMovie("Fight Club");
         Assert.assertEquals(searchResultsPage.getTitleFirstResult(), "Fight Club");
     }
 }

@@ -4,10 +4,10 @@ import io.qameta.allure.Description;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-import org.themoviedb.auth.AuthConstants;
+import data.LoginData;
 import pages.HomePage;
 import pages.LoginPage;
-import utils.FakeUsers;
+import data.FakeUsers;
 import utils.LoginFailedUtils;
 
 public class LoginFailed extends Hooks {
@@ -19,8 +19,8 @@ public class LoginFailed extends Hooks {
         logger.info("Verify when user wants login with invalid credentials");
 
         HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.clickLoginButton()
-                .loginUser(FakeUsers.FAKE_USER.getUsername(), FakeUsers.FAKE_USER.getPassword());
+        LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
+        loginPage.loginUser(FakeUsers.FAKE_USER.getUsername(), FakeUsers.FAKE_USER.getPassword());
         LoginFailedUtils.assertWeCouldntFindYourUsername(loginPage);
     }
 
@@ -30,7 +30,8 @@ public class LoginFailed extends Hooks {
         logger.info("Verify when user wants login with empty fields");
 
         HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.clickLoginButton().loginUser("", "");
+        LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
+        loginPage.loginUser("", "");
         LoginFailedUtils.assertWeCouldntFindYourUsername(loginPage);
     }
 
@@ -40,7 +41,8 @@ public class LoginFailed extends Hooks {
         logger.info("Verify when user left username field empty");
 
         HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.clickLoginButton().loginUser("", AuthConstants.USER_PASSWORD);
+        LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
+        loginPage.loginUser("", LoginData.USER_PASSWORD);
         LoginFailedUtils.assertWeCouldntFindYourUsername(loginPage);
     }
 
@@ -50,7 +52,8 @@ public class LoginFailed extends Hooks {
         logger.info("Verify when user left password field empty");
 
         HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.clickLoginButton().loginUser(AuthConstants.USER_USERNAME, "");
+        LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
+        loginPage.loginUser(LoginData.USER_USERNAME, "");
         LoginFailedUtils.assertWeCouldntValidateYourUsername(loginPage);
     }
 }
