@@ -47,15 +47,17 @@ public class LoginPage extends BasePage {
         return errorTextTwo.getText();
     }
 
-    public void loginUser(String username, String password) {
+    public LoginPage loginUser(String username, String password) {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
+        return this;
     }
 
-    public void searchMovie(String movie) {
+    public SearchResultsPage searchMovie(String movie) {
         searchButton.click();
         searchBar.sendKeys(movie);
         searchBar.sendKeys(Keys.ENTER);
+        return new SearchResultsPage(driver);
     }
 }
