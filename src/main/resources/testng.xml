@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="LoginSpec" parallel="methods" thread-count="6" verbose="1">
+    <test name="LoginSuccessful">
+        <classes>
+            <class name="specs.LoginSuccessful"/>
+        </classes>
+    </test>
+
+    <test name="LoginFailed">
+        <classes>
+            <class name="specs.LoginFailed"/>
+        </classes>
+    </test>
+</suite>
