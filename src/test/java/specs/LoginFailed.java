@@ -3,7 +3,6 @@ package specs;
 import io.qameta.allure.Description;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.themoviedb.auth.AuthConstants;
 import pages.HomePage;
@@ -52,7 +51,6 @@ public class LoginFailed extends Hooks {
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.clickLoginButton().loginUser(AuthConstants.USER_USERNAME, "");
-
         LoginFailedUtils.assertWeCouldntValidateYourUsername(loginPage);
     }
 }
