@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +32,16 @@ public class LoginPage extends BasePage {
         this.navigationBar = new NavigationBar(driver);
     }
 
+    public void loginUser(String username, String password) {
+        usernameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginButton.click();
+    }
+
+    public NavigationBar getNavigationBar() {
+        return navigationBar;
+    }
+
     public String getErrorTitle() {
         return errorTitle.getText();
     }
@@ -43,19 +52,5 @@ public class LoginPage extends BasePage {
 
     public String getErrorTextTwo() {
         return errorTextTwo.getText();
-    }
-
-    public LoginPage loginUser(String username, String password) {
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
-        loginButton.click();
-        return this;
-    }
-
-    public SearchResultsPage searchMovie(String movie) {
-        navigationBar.getSearchButton().click();
-        navigationBar.getSearchBar().sendKeys(movie);
-        navigationBar.getSearchBar().sendKeys(Keys.ENTER);
-        return new SearchResultsPage(driver);
     }
 }

@@ -1,6 +1,6 @@
-package org.themoviedb.auth;
+package data;
 
-public class AuthConstants {
+public class LoginData {
     public static final String USER_USERNAME = System.getenv("MOVIEDBUSERNAME");
     public static final String USER_PASSWORD = System.getenv("MOVIEDBPASSWORD");
 }

@@ -1,4 +1,4 @@
-package utils;
+package data;
 
 public enum FakeUsers {
 

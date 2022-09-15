@@ -65,7 +65,23 @@
         </RollingFile>
 
         <RollingFile name="search-successful"
-                     fileName="${APP_LOG_ROOT}/login-failed.log">
+                     fileName="${APP_LOG_ROOT}/search-successful.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- Max 10 files will be created everyday -->
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${basePath}" maxDepth="10">
+                    <!-- Delete all files older than 30 days -->
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="movie-genre-filter"
+                     fileName="${APP_LOG_ROOT}/movie-genre-filter.log">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
@@ -96,6 +112,10 @@
 
         <Logger name="search-successful" additivity="false" level="infoLog">
             <AppenderRef ref="search-successful"/>
+        </Logger>
+
+        <Logger name="movie-genre-filter" additivity="false" level="infoLog">
+            <AppenderRef ref="movie-genre-filter"/>
         </Logger>
 
         <!-- Root logger referring to console appender -->
