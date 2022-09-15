@@ -1,6 +1,5 @@
 package utils;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.LoginPage;
 
