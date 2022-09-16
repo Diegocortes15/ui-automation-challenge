@@ -1,25 +1,23 @@
 package specs;
 
+import data.LoginData;
 import io.qameta.allure.Description;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import data.LoginData;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.MoviePage;
-import pages.MovieListPage;
+import pages.*;
 import utils.Contants;
 
-public class MovieFilter extends Hooks {
-
-    private static final Logger logger = LogManager.getLogger("movie-genre-filter");
+public class ActingTimeline extends Hooks{
+    private static final Logger logger = LogManager.getLogger("acting-timeline");
 
     @Test
-    @Description("Verify movie genre filter")
-    public void movieGenreFilterTest() {
-        logger.info("Verify movie genre filter");
+    @Description("Verify acting timeline")
+    public void actingTimelineTest() {
+        logger.info("Verify acting timeline");
+
+        String movieTitle;
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
@@ -29,9 +27,10 @@ public class MovieFilter extends Hooks {
         MovieListPage movieListPage = loginPage.getNavigationBar().goTopRatedMovies();
         Assert.assertEquals(movieListPage.getTextTitlePage(), "Top Rated Movies");
 
-        movieListPage.filterMovieByAction();
-
         MoviePage moviePage = movieListPage.clickRandomMovieCard(Contants.MAX_MOVIES_PER_PAGE);
-        Assert.assertTrue(moviePage.getTextGenres().contains("Action"));
+        movieTitle = moviePage.getTextMovieTitle();
+
+        ActorPage actorPage = moviePage.clickFirstActorTopBilledCast();
+        Assert.assertTrue(actorPage.isMovieInActingTimeLine(movieTitle));
     }
 }
