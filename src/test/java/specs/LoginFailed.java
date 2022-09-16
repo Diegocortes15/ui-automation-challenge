@@ -54,6 +54,6 @@ public class LoginFailed extends Hooks {
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
         loginPage.loginUser(LoginData.USER_USERNAME, "");
-        LoginFailedUtils.assertWeCouldntValidateYourUsername(loginPage);
+        LoginFailedUtils.assertWeCouldntValidateYourInformation(loginPage);
     }
 }

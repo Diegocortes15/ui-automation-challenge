@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import pages.LoginPage;
-import pages.MoviesPage;
+import pages.MovieListPage;
 import pages.SearchResultsPage;
 
 public class NavigationBar extends BasePage {
@@ -41,10 +41,9 @@ public class NavigationBar extends BasePage {
         return new SearchResultsPage(driver);
     }
 
-    public MoviesPage goTopRatedMovies() {
-        //actions.moveToElement(moviesLink);
+    public MovieListPage goTopRatedMovies() {
         moviesLink.click();
         topRatedMoviesLink.click();
-        return new MoviesPage(driver);
+        return new MovieListPage(driver);
     }
 }

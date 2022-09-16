@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class MoviesPage extends BasePage {
+public class MovieListPage extends BasePage {
 
     @FindBy(css = ".title h2")
     private WebElement titlePage;
@@ -29,7 +29,7 @@ public class MoviesPage extends BasePage {
     @FindBy(css = ".card.style_1")
     private List<WebElement> listMovieCards;
 
-    public MoviesPage(WebDriver driver) {
+    public MovieListPage(WebDriver driver) {
         super(driver);
     }
 
