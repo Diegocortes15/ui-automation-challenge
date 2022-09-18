@@ -8,7 +8,7 @@ import data.LoginData;
 import pages.HomePage;
 import pages.LoginPage;
 import data.FakeUsers;
-import utils.LoginFailedUtils;
+import utils.specs.LoginFailedUtils;
 
 public class LoginFailed extends Hooks {
     private static final Logger logger = LogManager.getLogger("login-failed");

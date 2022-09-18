@@ -31,6 +31,6 @@ public class ActingTimeline extends Hooks{
         movieTitle = moviePage.getTextMovieTitle();
 
         ActorPage actorPage = moviePage.clickFirstActorTopBilledCast();
-        Assert.assertTrue(actorPage.isMovieInActingTimeLine(movieTitle));
+        Assert.assertTrue(actorPage.isMovieInActingTimeline(movieTitle));
     }
 }
