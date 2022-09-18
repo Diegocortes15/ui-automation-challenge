@@ -1,4 +1,4 @@
-package utils;
+package utils.specs;
 
 import org.testng.Assert;
 import pages.LoginPage;

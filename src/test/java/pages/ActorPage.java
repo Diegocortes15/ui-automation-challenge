@@ -15,8 +15,9 @@ public class ActorPage extends BasePage{
         super(driver);
     }
 
-    public boolean isMovieInActingTimeLine(String movie){
+    public boolean isMovieInActingTimeline(String movie){
         List<String> movies = moviesList.stream().map(WebElement::getText).toList();
+
         return movies.contains(movie);
     }
 }

@@ -1,26 +1,37 @@
 package pages;
 
+import com.google.common.collect.Ordering;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import utils.pages.MovieListPageUtils;
 import java.time.Duration;
-import java.util.List;
+import java.util.*;
 
 public class MovieListPage extends BasePage {
+    private final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     @FindBy(css = ".title h2")
     private WebElement titlePage;
 
-    @FindBy(xpath = "//h2[contains(text(),'Filters')]/..")
+    @FindBy(css = ".filter_panel.card:nth-child(1)")
+    private WebElement sortButton;
+
+    @FindBy(css = ".filter_panel.card:nth-child(2)")
     private WebElement filtersButton;
+
+    @FindBy(css = ".filter_panel.card:nth-child(1) h3 + .k-dropdown")
+    private WebElement sortResultByButton;
+
+    @FindBy(css = "#sort_by_listbox .k-item:nth-child(6)")
+    private WebElement dateAscendingButton;
 
     @FindBy(css = "#with_genres > li:nth-child(1)")
     private WebElement actionGenre;
 
-    @FindBy(css = ".apply.small p")
+    @FindBy(css = ".apply.small")
     private WebElement searchSideBarButton;
 
     @FindBy(css = ".apply.full")
@@ -28,6 +39,9 @@ public class MovieListPage extends BasePage {
 
     @FindBy(css = ".card.style_1")
     private List<WebElement> listMovieCards;
+
+    @FindBy(css = ".card.style_1:nth-child(-n+4) .content p")
+    private List<WebElement> listMovieDates;
 
     public MovieListPage(WebDriver driver) {
         super(driver);
@@ -38,7 +52,6 @@ public class MovieListPage extends BasePage {
     }
 
     public void filterMovieByAction() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         filtersButton.click();
         actions.moveToElement(actionGenre);
         actionGenre.click();
@@ -51,5 +64,18 @@ public class MovieListPage extends BasePage {
         actions.moveToElement(listMovieCards.get(movieId));
         listMovieCards.get(movieId).click();
         return new MoviePage(driver);
+    }
+
+    public void orderMoviesByDateAscending() {
+        sortButton.click();
+        sortResultByButton.click();
+        dateAscendingButton.click();
+        searchSideBarButton.click();
+        wait.until(ExpectedConditions.attributeContains(searchSideBarButton, "class", "disabled"));
+    }
+
+    public boolean isDatesOrdered() {
+        List<Long> timestampMovies = MovieListPageUtils.getMoviesTimestamp(listMovieDates);
+        return Ordering.natural().isOrdered(timestampMovies);
     }
 }
