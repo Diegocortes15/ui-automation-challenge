@@ -19,7 +19,7 @@ public class MovieFilter extends Hooks {
     @Test
     @Description("Verify movie genre filter")
     public void movieGenreFilterTest() {
-        logger.info("Verify movie genre filter");
+        logger.info("Test: Verify movie genre filter");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();

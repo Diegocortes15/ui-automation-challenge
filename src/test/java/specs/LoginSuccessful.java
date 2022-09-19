@@ -13,9 +13,9 @@ public class LoginSuccessful extends Hooks {
     private static final Logger logger = LogManager.getLogger("login-successful");
 
     @Test
-    @Description("Verify when user uses valid credentials")
+    @Description("The user should be able to login")
     public void loginValidUserTest() {
-        logger.info("Verify when user uses valid credentials");
+        logger.info("Test: The user should be able to login");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();

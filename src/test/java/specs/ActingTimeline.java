@@ -15,7 +15,7 @@ public class ActingTimeline extends Hooks{
     @Test
     @Description("Verify acting timeline")
     public void actingTimelineTest() {
-        logger.info("Verify acting timeline");
+        logger.info("Test: Verify acting timeline");
 
         String movieTitle;
 
