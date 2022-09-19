@@ -1,6 +1,7 @@
 package specs;
 
 import data.LoginData;
+import io.qameta.allure.Description;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -11,10 +12,11 @@ import pages.MovieListPage;
 
 public class MovieDatesAscOrder extends Hooks {
 
-    private static final Logger logger = LogManager.getLogger("login-successful");
+    private static final Logger logger = LogManager.getLogger("movie-dates-asc-order");
     @Test
+    @Description("The user should see the dates of the first 4 movies in ascending order")
     public void movieDateAscOrderTest() {
-        logger.info("Verify movie genre filter");
+        logger.info("Test: The user should see the dates of the first 4 movies in ascending order");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
