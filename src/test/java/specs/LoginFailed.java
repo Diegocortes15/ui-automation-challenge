@@ -16,7 +16,7 @@ public class LoginFailed extends Hooks {
     @Test
     @Description("Verify when user wants login with invalid credentials")
     public void loginInvalidCredentialTest() {
-        logger.info("Verify when user wants login with invalid credentials");
+        logger.info("Test: Verify when user wants login with invalid credentials");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
@@ -27,7 +27,7 @@ public class LoginFailed extends Hooks {
     @Test
     @Description("Verify when user wants login with empty fields")
     public void loginEmptyFieldsTest() {
-        logger.info("Verify when user wants login with empty fields");
+        logger.info("Test: Verify when user wants login with empty fields");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
@@ -36,7 +36,7 @@ public class LoginFailed extends Hooks {
     }
 
     @Test
-    @Description("Verify when user left username field empty")
+    @Description("Test: Verify when user left username field empty")
     public void loginEmptyUsernameTest() {
         logger.info("Verify when user left username field empty");
 
@@ -49,7 +49,7 @@ public class LoginFailed extends Hooks {
     @Test
     @Description("Verify when user left password field empty")
     public void loginEmptyPasswordTest() {
-        logger.info("Verify when user left password field empty");
+        logger.info("Test: Verify when user left password field empty");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();

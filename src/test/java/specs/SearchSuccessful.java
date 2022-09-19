@@ -16,7 +16,7 @@ public class SearchSuccessful extends Hooks {
     @Test
     @Description("Verify successful search")
     public void successfulSearchTest() {
-        logger.info("Verify successful search");
+        logger.info("Test: Verify successful search");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
