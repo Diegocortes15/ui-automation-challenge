@@ -1,13 +1,14 @@
 package data;
 
-public enum FakeUsers {
+public enum Users {
 
-    FAKE_USER("nonexistinguser","nonexistingpassword");
+    FAKE_USER("nonexistinguser","nonexistingpassword"),
+    USER(System.getenv("MOVIEDB_USERNAME"),System.getenv("MOVIEDB_PASSWORD"));
 
     private final String username;
     private final String password;
 
-    FakeUsers(String fakeUsername, String fakePassword) {
+    Users(String fakeUsername, String fakePassword) {
         this.username = fakeUsername;
         this.password = fakePassword;
     }

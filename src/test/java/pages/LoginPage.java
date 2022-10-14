@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,24 +33,29 @@ public class LoginPage extends BasePage {
         this.navigationBar = new NavigationBar(driver);
     }
 
+    @Step("⏩ User login. Step...")
     public void loginUser(String username, String password) {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
     }
 
+    @Step("⏩ Get the navigation bar. Step...")
     public NavigationBar getNavigationBar() {
         return navigationBar;
     }
 
+    @Step("⏩ Get error title. Step...")
     public String getErrorTitle() {
         return errorTitle.getText();
     }
 
+    @Step("⏩ Get first error message. Step...")
     public String getErrorTextOne() {
         return errorTextOne.getText();
     }
 
+    @Step("⏩ Get second error message. Step...")
     public String getErrorTextTwo() {
         return errorTextTwo.getText();
     }

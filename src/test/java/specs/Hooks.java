@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import utils.Contants;
+import utils.Constants;
 
 public abstract class Hooks {
     private static final Logger logger = LogManager.getLogger("driver");
@@ -20,7 +20,7 @@ public abstract class Hooks {
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.navigate().to(Contants.SUT);
+        driver.navigate().to(Constants.SUT);
     }
 
     @AfterMethod
