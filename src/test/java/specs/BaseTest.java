@@ -15,11 +15,10 @@ public abstract class BaseTest {
     @BeforeMethod
     @Description("Browser start up")
     @Parameters("browser")
-    public void setDriver(/*String browser*/) {
+    public void setDriver(String browser) {
         LoggerLoad.info("Browser start up");
-        System.setProperty("webdriver.chrome.driver", "src/test/java/utils/drivers/chromedriver.exe");
-        driver = new WebDriverFactory().createInstance("CHROME");
-        /*if (browser.equalsIgnoreCase("chrome")) {
+
+        if (browser.equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver", "src/test/java/utils/drivers/chromedriver.exe");
             driver = new WebDriverFactory().createInstance(browser);
         } else if (browser.equalsIgnoreCase("edge")) {
@@ -28,7 +27,7 @@ public abstract class BaseTest {
         } else if (browser.equalsIgnoreCase("firefox")) {
             System.setProperty("webdriver.gecko.driver", "src/test/java/utils/drivers/geckodriver.exe");
             driver = new WebDriverFactory().createInstance(browser);
-        }*/
+        }
 
         driver.manage().window().maximize();
         driver.navigate().to(Constants.SUT);
