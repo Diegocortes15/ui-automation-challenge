@@ -1,6 +1,7 @@
 package pages;
 
 import com.google.common.collect.Ordering;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,10 +48,12 @@ public class MovieListPage extends BasePage {
         super(driver);
     }
 
+    @Step("⏩ Get title page. Step...")
     public String getTextTitlePage() {
         return titlePage.getText();
     }
 
+    @Step("⏩ Filter movie by action. Step...")
     public void filterMovieByAction() {
         filtersButton.click();
         actions.moveToElement(actionGenre);
@@ -59,6 +62,7 @@ public class MovieListPage extends BasePage {
         wait.until(ExpectedConditions.invisibilityOf(searchFooterButton));
     }
 
+    @Step("⏩ Click on random movie. Movie {0} selected. Step...")
     public MoviePage clickRandomMovieCard(int maxMoviesCard) {
         int movieId = (int) ((Math.random() * (maxMoviesCard - 1)) + 1);
         actions.moveToElement(listMovieCards.get(movieId));
@@ -66,6 +70,7 @@ public class MovieListPage extends BasePage {
         return new MoviePage(driver);
     }
 
+    @Step("⏩ Order movies by ascending date. Step...")
     public void orderMoviesByDateAscending() {
         sortButton.click();
         sortResultByButton.click();
@@ -74,6 +79,7 @@ public class MovieListPage extends BasePage {
         wait.until(ExpectedConditions.attributeContains(searchSideBarButton, "class", "disabled"));
     }
 
+    @Step("⏩ Verify if movies dates are in order. Step...")
     public boolean isDatesOrdered() {
         List<Long> timestampMovies = MovieListPageUtils.getMoviesTimestamp(listMovieDates);
         return Ordering.natural().isOrdered(timestampMovies);

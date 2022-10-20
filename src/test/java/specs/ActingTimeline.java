@@ -1,33 +1,38 @@
 package specs;
 
-import data.LoginData;
-import io.qameta.allure.Description;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import data.Users;
+import io.qameta.allure.*;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
-import utils.Contants;
+import utils.Constants;
+import utils.LoggerLoad;
+import utils.listeners.TestListener;
 
-public class ActingTimeline extends Hooks{
-    private static final Logger logger = LogManager.getLogger("acting-timeline");
+@Listeners({TestListener.class})
+@Epic("Regression Tests")
+@Feature("Acting Time Line")
+public class ActingTimeline extends BaseTest {
 
     @Test
-    @Description("Verify acting timeline")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Test Description: Verify acting timeline")
+    @Story("Acting time line test")
     public void actingTimelineTest() {
-        logger.info("Test: Verify acting timeline");
+        LoggerLoad.info("Test: Verify acting timeline");
 
         String movieTitle;
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
-        loginPage.loginUser(LoginData.USER_USERNAME, LoginData.USER_PASSWORD);
+        loginPage.loginUser(Users.USER.getUsername(), Users.USER.getPassword());
         Assert.assertEquals(driver.getTitle(), "My Profile — The Movie Database (TMDB)");
 
         MovieListPage movieListPage = loginPage.getNavigationBar().goTopRatedMovies();
         Assert.assertEquals(movieListPage.getTextTitlePage(), "Top Rated Movies");
 
-        MoviePage moviePage = movieListPage.clickRandomMovieCard(Contants.MAX_MOVIES_PER_PAGE);
+        MoviePage moviePage = movieListPage.clickRandomMovieCard(Constants.MAX_MOVIES_PER_PAGE);
         movieTitle = moviePage.getTextMovieTitle();
 
         ActorPage actorPage = moviePage.clickFirstActorTopBilledCast();
