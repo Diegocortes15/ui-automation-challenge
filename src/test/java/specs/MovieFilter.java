@@ -1,29 +1,33 @@
 package specs;
 
-import io.qameta.allure.Description;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import data.Users;
+import io.qameta.allure.*;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import data.LoginData;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.MoviePage;
 import pages.MovieListPage;
-import utils.Contants;
+import utils.Constants;
+import utils.LoggerLoad;
+import utils.listeners.TestListener;
 
-public class MovieFilter extends Hooks {
-
-    private static final Logger logger = LogManager.getLogger("movie-genre-filter");
+@Listeners({TestListener.class})
+@Epic("Regression Tests")
+@Feature("Movie Filter")
+public class MovieFilter extends BaseTest {
 
     @Test
-    @Description("Verify movie genre filter")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Test Description: Verify movie genre filter")
+    @Story("Filter movies by genre test")
     public void movieGenreFilterTest() {
-        logger.info("Test: Verify movie genre filter");
+        LoggerLoad.info("Test: Verify movie genre filter");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
-        loginPage.loginUser(LoginData.USER_USERNAME, LoginData.USER_PASSWORD);
+        loginPage.loginUser(Users.USER.getUsername(), Users.USER.getPassword());
         Assert.assertEquals(driver.getTitle(), "My Profile — The Movie Database (TMDB)");
 
         MovieListPage movieListPage = loginPage.getNavigationBar().goTopRatedMovies();
@@ -31,7 +35,7 @@ public class MovieFilter extends Hooks {
 
         movieListPage.filterMovieByAction();
 
-        MoviePage moviePage = movieListPage.clickRandomMovieCard(Contants.MAX_MOVIES_PER_PAGE);
+        MoviePage moviePage = movieListPage.clickRandomMovieCard(Constants.MAX_MOVIES_PER_PAGE);
         Assert.assertTrue(moviePage.getTextGenres().contains("Action"));
     }
 }
