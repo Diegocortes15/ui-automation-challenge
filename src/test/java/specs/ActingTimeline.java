@@ -2,24 +2,25 @@ package specs;
 
 import data.Users;
 import io.qameta.allure.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.Constants;
+import utils.LoggerLoad;
+import utils.listeners.TestListener;
 
+@Listeners({TestListener.class})
 @Epic("Regression Tests")
 @Feature("Acting Time Line")
-public class ActingTimeline extends Hooks{
-    private static final Logger logger = LogManager.getLogger("acting-timeline");
+public class ActingTimeline extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Description("Test Description: Verify acting timeline")
     @Story("Acting time line test")
     public void actingTimelineTest() {
-        logger.info("Test: Verify acting timeline");
+        LoggerLoad.info("Test: Verify acting timeline");
 
         String movieTitle;
 

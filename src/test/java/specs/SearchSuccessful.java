@@ -2,25 +2,26 @@ package specs;
 
 import data.Users;
 import io.qameta.allure.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SearchResultsPage;
+import utils.LoggerLoad;
+import utils.listeners.TestListener;
 
+@Listeners({TestListener.class})
 @Epic("Regression Tests")
 @Feature("Searcher")
-public class SearchSuccessful extends Hooks {
-    private static final Logger logger = LogManager.getLogger("search-successful");
+public class SearchSuccessful extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Description("Test Description: Verify successful search")
     @Story("Search movie by searcher field test")
     public void successfulSearchTest() {
-        logger.info("Test: Verify successful search");
+        LoggerLoad.info("Test: Verify successful search");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();

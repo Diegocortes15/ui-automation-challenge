@@ -1,24 +1,35 @@
 package specs;
 
 import io.qameta.allure.Description;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import utils.Constants;
+import utils.LoggerLoad;
+import utils.WebDriverFactory;
 
-public abstract class Hooks {
-    private static final Logger logger = LogManager.getLogger("driver");
-    protected WebDriver driver;
+public abstract class BaseTest {
+    public WebDriver driver;
 
     @BeforeMethod
     @Description("Browser start up")
-    public void setDriver() {
-        logger.info("Browser start up");
+    @Parameters("browser")
+    public void setDriver(/*String browser*/) {
+        LoggerLoad.info("Browser start up");
+        System.setProperty("webdriver.chrome.driver", "src/test/java/utils/drivers/chromedriver.exe");
+        driver = new WebDriverFactory().createInstance("CHROME");
+        /*if (browser.equalsIgnoreCase("chrome")) {
+            System.setProperty("webdriver.chrome.driver", "src/test/java/utils/drivers/chromedriver.exe");
+            driver = new WebDriverFactory().createInstance(browser);
+        } else if (browser.equalsIgnoreCase("edge")) {
+            System.setProperty("webdriver.edge.driver", "src/test/java/utils/drivers/msedgedriver.exe");
+            driver = new WebDriverFactory().createInstance(browser);
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            System.setProperty("webdriver.gecko.driver", "src/test/java/utils/drivers/geckodriver.exe");
+            driver = new WebDriverFactory().createInstance(browser);
+        }*/
 
-        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.navigate().to(Constants.SUT);
     }
@@ -26,7 +37,11 @@ public abstract class Hooks {
     @AfterMethod
     @Description("Browser tear down")
     public void tearDown() {
-        logger.info("Browser tear down");
+        LoggerLoad.info("Browser tear down");
         driver.quit();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 }

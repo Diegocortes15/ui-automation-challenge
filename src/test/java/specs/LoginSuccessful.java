@@ -2,24 +2,25 @@ package specs;
 
 import data.Users;
 import io.qameta.allure.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.LoggerLoad;
+import utils.listeners.TestListener;
 
+@Listeners({TestListener.class})
 @Epic("Regression Tests")
 @Feature("Login")
-public class LoginSuccessful extends Hooks {
-    private static final Logger logger = LogManager.getLogger("login-successful");
+public class LoginSuccessful extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
     @Description("Test Description: The user should be able to login")
     @Story("Login successful test")
     public void loginValidUserTest() {
-        logger.info("Test: The user should be able to login");
+        LoggerLoad.info("Test: The user should be able to login");
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.getNavigationBar().clickLoginButton();
