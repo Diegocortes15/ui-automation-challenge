@@ -41,7 +41,7 @@
         </classes>
     </test>
 
-<!--    <test name="Firefox: Login">
+    <test name="Firefox: Login">
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="specs.LoginSuccessful"/>
@@ -74,9 +74,9 @@
         <classes>
             <class name="specs.MovieDatesAscOrder"/>
         </classes>
-    </test>-->
+    </test>
 
-    <test name="Edge: Login">
+    <!--<test name="Edge: Login">
         <parameter name="browser" value="edge"/>
         <classes>
             <class name="specs.LoginSuccessful"/>
@@ -109,6 +109,6 @@
         <classes>
             <class name="specs.MovieDatesAscOrder"/>
         </classes>
-    </test>
+    </test>-->
 
 </suite>
